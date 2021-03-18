@@ -24,8 +24,6 @@ jobs:
               with:
                   always-auth: true
                   node-version: ${{ matrix.node-version }}
-                  registry-url: https://registry.npmjs.org
-                  scope: '@yzfe'
             - run: npm config set always-auth=true
             - run: npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
             - run: npm config set //npm.yzops.net/:_authToken $NPM_TOKEN
