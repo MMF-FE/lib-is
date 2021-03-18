@@ -8,6 +8,11 @@ jobs:
     build:
         runs-on: ubuntu-latest
 
+        env:
+            NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+            NPM_TOKEN: ${{secrets.NPM_YZ_TOKEN}}
+            CI_FE_TOKEN: ${{secrets.CI_FE_TOKEN}}
+
         strategy:
             matrix:
                 node-version: [14.x]
@@ -21,11 +26,9 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   registry-url: https://registry.npmjs.org
                   scope: '@yzfe'
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-                  NPM_TOKEN: ${{secrets.NPM_YZ_TOKEN}}
-                  CI_FE_TOKEN: ${{secrets.CI_FE_TOKEN}}
-
+            - run: npm config set always-auth=true
+            - run: npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+            - run: npm config set //npm.yzops.net/:_authToken $NPM_TOKEN
             - run: yarn
             - run: yarn build
             - run: npm --no-git-tag-version version ${GITHUB_REF#refs/tags/}
