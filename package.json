@@ -1,0 +1,50 @@
+{
+    "name": "@yzfe/lib-is",
+    "version": "0.0.0",
+    "title": "lib/is",
+    "description": "常用环境判断",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "types": "./dist/index.d.ts",
+    "author": "vfasky<vfasky@me.com>",
+    "license": "MIT",
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MMF-FE/lib-is.git"
+    },
+    "files": [
+        "dist",
+        "package.json",
+        "README.md"
+    ],
+    "scripts": {
+        "build": "rollup -c",
+        "docs": "vuepress dev docs",
+        "docs:build": "NODE_ENV=production vuepress build docs",
+        "test": "ts-node --transpile-only --skip-project test"
+    },
+    "dependencies": {
+        "tslib": "^2.1.0"
+    },
+    "devDependencies": {
+        "@types/node": "^14.14.31",
+        "@types/node-fetch": "^2.5.8",
+        "@yzfe-private/vuepress-plugin-yzfe-build-docs": "^0.0.1",
+        "node-fetch": "^2.6.1",
+        "rollup": "^2.39.1",
+        "rollup-plugin-typescript2": "^0.30.0",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.2.2",
+        "vuepress": "^1.8.2"
+    }
+}
